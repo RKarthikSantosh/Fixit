@@ -16,9 +16,7 @@ const DashboardEmployee = ({ user, bookings: initialBookings }) => {
             if (action === "accept") {
                 const response = await fetch('/api/accepted-booking', {
                     method: 'POST',
-                    headers: {
-                        'content-type': 'application/json',
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         employeeUsername: user.username,
                         employeeEmail: user.email,
@@ -31,32 +29,32 @@ const DashboardEmployee = ({ user, bookings: initialBookings }) => {
                         state: booking.state,
                         category: user.category, 
                         service: user.service,
-                        date: booking.date
+                        date: booking.date,
+                        time:booking.time
                     }),
                 });
-
-                if (response.status !== 201) {
+    
+                if (!response.ok) {
                     const data = await response.json();
                     setError(data.error || "Failed to accept booking.");
                     return;
                 }
             }
-
-            // Remove the accepted or declined booking from state
+    
+            // ✅ Remove the accepted booking from state
             setBookings(prevBookings => prevBookings.filter(b => b._id !== booking._id));
         } catch (error) {
             setError("Something went wrong. Please try again.");
         }
     }
+    
 
     async function handleDecline(event, booking) {
         event.preventDefault();
         try {
             const response = await fetch('/api/reject-booking', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     username: booking.username,
                     service: user.service,
@@ -64,19 +62,19 @@ const DashboardEmployee = ({ user, bookings: initialBookings }) => {
                 }),
             });
     
-            if (response.status === 200) {
-                // ✅ Remove the booking from UI without refresh
-                setBookings((prevBookings) => 
-                    prevBookings.filter(b => !(b.username === booking.username && b.service === user.service && b.date === booking.date))
-                );
-            } else {
+            if (!response.ok) {
                 const data = await response.json();
                 setError(data.message || "Failed to decline booking.");
+                return;
             }
+    
+            // ✅ Remove declined booking from state
+            setBookings(prevBookings => prevBookings.filter(b => b._id !== booking._id));
         } catch (error) {
             setError("Something went wrong. Please try again.");
         }
     }
+    
     
 
     return (
@@ -94,7 +92,7 @@ const DashboardEmployee = ({ user, bookings: initialBookings }) => {
                             </div>
                             <div className="p-6 space-y-6">
                                 <div className="flex flex-col items-center pb-6 border-b border-gray-700">
-                                    <div className="w-24 h-24 bg-gray-700 rounded-full mb-4 flex items-center justify-center text-3xl font-bold text-blue-400">
+                                    <div className="w-24 h-24 bg-gray-700 rounded-full mb-4 flex items-center justify-center text-3xl font-bold ">
                                         <UserIcon className="w-11 h-11" />
                                     </div>
                                     <h3 className="text-xl font-semibold text-white">{user.username}</h3>
@@ -150,47 +148,76 @@ const DashboardEmployee = ({ user, bookings: initialBookings }) => {
                             
                             <div className="p-6 max-h-[486px] overflow-y-auto custom-scrollbar">
                                 {bookings.length > 0 ? (
-                                    <div className="space-y-4">                                
+                                    <div className="space-y-6">
                                         {bookings.map((booking, index) => (
-                                            <div key={index} className="bg-gray-700 hover:bg-gray-650 border-l-4 border-gray-400 rounded-lg shadow-md transition-all duration-200 overflow-hidden">
-                                                <div className="p-5">
-                                                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-4">
-                                                        <h3 className="text-lg font-medium text-white">{booking.username}</h3>
-                                                        <span className="px-3 py-1 bg-blue-500 text-white text-sm rounded-full">
-                                                            {new Date(booking.date).toLocaleDateString()}
+                                            <div 
+                                                key={index} 
+                                                className="bg-gray-700 border-blue-500 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:border-blue-400 overflow-hidden"
+                                            >
+                                                <div className="p-6">
+                                                    {/* Header Section */}
+                                                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-6">
+                                                        <div className="flex items-center gap-3">
+                                                            <div className=" bg-gray-700 rounded-full mb-4 flex items-center justify-center text-3xl font-bold ">
+                                                                <UserIcon className="w-5 h-5" />
+                                                            <h3 className="text-xl font-semibold text-gray-100">{booking.username}</h3>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        {/* Date and Time Box */}
+                                                        <div className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-3 flex flex-col gap-2">
+                                                            <span className="flex items-center justify-end text-sm font-medium text-gray-300 gap-2">
+                                                                {new Date(booking.date).toLocaleDateString('en-US', {
+                                                                    day: 'numeric',
+                                                                    month: 'short',
+                                                                    year: 'numeric'
+                                                                })}
+                                                                <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                                                </svg>
+                                                            </span>
+                                                            <span className="flex items-center justify-end text-sm font-medium text-gray-300 gap-2">
+                                                                {booking.time}
+                                                                <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                                </svg>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Contact Information Grid */}
+                                                    <div className="bg-gray-800/50 rounded-lg p-4 grid grid-cols-1 sm:grid-cols gap-4 mb-6">
+                                                        <div className="flex items-center gap-3">
+                                                            <MailIcon className="w-5 h-5 text-blue-400" />
+                                                            <span className="text-gray-300">{booking.email}</span>
+                                                        </div>
+                                                        <div className="flex items-center gap-3">
+                                                            <PhoneIcon className="w-5 h-5 text-blue-400" />
+                                                            <span className="text-gray-300">{booking.phone}</span>
+                                                        </div>
+                                                        <div className="flex items-start gap-3 col-span-full">
+                                                            <MapPinIcon className="w-5 h-5 text-blue-400 mt-0.5" />
+                                                            <span className="text-gray-300">{booking.street}, {booking.city}, {booking.state}</span>
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Footer Section */}
+                                                    <div className="flex justify-between items-center">
+                                                        <span className="flex items-center gap-2 px-3 py-1 bg-yellow-500/10 text-yellow-400 text-sm rounded-full">
+                                                            <span className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></span>
+                                                            Pending
                                                         </span>
-                                                    </div>
-                                                    
-                                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-gray-300">
-                                                        <div className="flex items-center gap-2">
-                                                            <MailIcon className="w-4 h-4 text-gray-400" />
-                                                            <span>{booking.email}</span>
-                                                        </div>
-                                                        <div className="flex items-center gap-2">
-                                                            <PhoneIcon className="w-4 h-4 text-gray-400" />
-                                                            <span>{booking.phone}</span>
-                                                        </div>
-                                                        <div className="flex items-start gap-2 col-span-1 sm:col-span-2">
-                                                            <MapPinIcon className="w-4 h-4 text-gray-400 mt-0.5" />
-                                                            <span>{booking.street}, {booking.city}, {booking.state}</span>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div className="mt-4 flex justify-between items-center">
-                                                        <div className="flex items-center gap-2">
-                                                            <span className="w-2 h-2 bg-yellow-500 rounded-full"></span>
-                                                            <span className="text-sm text-gray-400">Pending</span>
-                                                        </div>
-                                                        <div className="flex gap-2">
+                                                        <div className="flex gap-3">
                                                             <button 
                                                                 onClick={(event) => handleBookingAction(event, booking, "accept")}
-                                                                className="text-sm px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700 transition-colors">
+                                                                className="px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700 transition-colors duration-200 flex items-center gap-2"
+                                                            >
                                                                 Accept
                                                             </button>
-
                                                             <button 
                                                                 onClick={(event) => handleDecline(event, booking, "decline")}
-                                                                className="text-sm px-3 py-1 bg-gray-600 text-white rounded hover:bg-gray-500 transition-colors">
+                                                                className="px-4 py-2 bg-red-500 text-white text-sm font-medium rounded-lg hover:bg-red-600 transition-colors duration-200 flex items-center gap-2"
+                                                            >
                                                                 Decline
                                                             </button>
                                                         </div>
@@ -201,11 +228,13 @@ const DashboardEmployee = ({ user, bookings: initialBookings }) => {
                                     </div>
                                 ) : (
                                     <div className="flex flex-col items-center justify-center py-12 text-center">
-                                        <div className="w-20 h-20 mb-6 rounded-full bg-gray-700 flex items-center justify-center">
-                                            <CalendarIcon className="w-10 h-10 text-gray-500" />
+                                        <div className="w-24 h-24 mb-6 rounded-full bg-gray-700/50 flex items-center justify-center backdrop-blur-sm">
+                                            <CalendarIcon className="w-12 h-12 text-gray-400" />
                                         </div>
-                                        <h3 className="text-xl font-medium text-gray-300 mb-2">No Orders Yet</h3>
-                                        <p className="text-gray-500 mb-6 max-w-md">No orders have been made by customers yet.</p>
+                                        <h3 className="text-2xl font-semibold text-gray-300 mb-3">No Orders Yet</h3>
+                                        <p className="text-gray-400 max-w-md">
+                                            No orders have been made by customers yet.
+                                        </p>
                                     </div>
                                 )}
                             </div>

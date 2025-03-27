@@ -12,8 +12,10 @@ const AcceptedBookingSchema = new Schema({
   state: { type: String, required: false },
   service: { type: String, required: false },
   date: { type: Date, required: true },
+  time: { type: String, required: true },  // ✅ Ensure time is required
 });
 
 // Ensure consistent model name
 export const AcceptedBooking =
   mongoose.models.AcceptedBooking || mongoose.model("AcceptedBooking", AcceptedBookingSchema);
+

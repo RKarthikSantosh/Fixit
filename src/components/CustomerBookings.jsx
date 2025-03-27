@@ -46,31 +46,47 @@ const CustomerBookings = async () => {
                                     {bookings.length} {bookings.length === 1 ? "Booking" : "Bookings"}
                                 </div>
                             </div>
-                            
                             <div className="p-6 max-h-[555px] overflow-y-auto custom-scrollbar">
                                 {bookings.length > 0 ? (
                                     <div className="space-y-4">                                
                                         {bookings.map((booking, index) => (
                                             <div key={index} className="bg-gray-700 hover:bg-gray-650 border-l-4 border-gray-400 rounded-lg shadow-md transition-all duration-200 overflow-hidden">
                                                 <div className="p-5">
-                                                    <h3 className="text-xl font-medium text-white pb-5">Employee details</h3> {/* ✅ Updated */}
+                                                <h3 className="text-2xl font-medium text-blue-400 pb-5">Employee details</h3> {/* ✅ Updated */}
                                                     <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-4">
-                                                        <div className="flex items-center gap-2">
-                                                            <UserIcon className="w-5 h-5 text-blue-400" />
-                                                            <span className="text-lg font-medium">{booking.employeeUsername}</span> {/* ✅ Updated */}
+                                                        <div className="flex-col items-center">
+                                                            <div className="flex items-center gap-2 ">
+                                                                <UserIcon className="w-7 h-7 text-blue-400 justify-center" />
+                                                                <span className="text-2xl font-semibold">{booking.employeeUsername}</span> {/* ✅ Updated */}
+                                                            </div>
+                                                            <div className="flex items-center gap-3 text-lg pt-4">
+                                                                <PhoneIcon className="w-6 h-6 text-blue-400 " />
+                                                                <span className="text-xl font-semibold">{booking.employeePhone}</span> {/* ✅ Updated */}
+                                                            </div>   
                                                         </div>
-                                                        <span className="px-3 py-1 bg-blue-500 text-white text-sm rounded-full">
-                                                            {new Date(booking.date).toLocaleDateString()}
-                                                        </span>
+                                                        <div className="bg-gray-800/50 rounded-lg p-3 flex flex-col gap-3 justify-center">
+                                                            <span className="flex text-sm font-medium text-gray-300 gap-2 justify-end">
+                                                                {new Date(booking.date).toLocaleDateString('en-US', {
+                                                                    day: 'numeric',
+                                                                    month: 'short',
+                                                                    year: 'numeric'
+                                                                })}
+                                                                <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                                                </svg>
+                                                            </span>
+                                                            <span className="flex justify-end gap-2 text-sm font-medium text-gray-300">
+                                                                {booking.time}
+                                                                <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                                </svg>
+                                                            </span>
+                                                        </div>
                                                     </div>
                                                     <div className="flex flex-col gap-3 text-base text-gray-300">
                                                         <div className="flex items-center gap-2">
                                                             <MailIcon className="w-4 h-4 text-blue-400" />
                                                             <span>{booking.employeeEmail}</span> {/* ✅ Updated */}
-                                                        </div>
-                                                        <div className="flex items-center gap-2">
-                                                            <PhoneIcon className="w-4 h-4 text-blue-400" />
-                                                            <span>{booking.employeePhone}</span> {/* ✅ Updated */}
                                                         </div>
                                                         <div className="flex items-center gap-2">
                                                             <TagIcon className="w-4 h-4 text-blue-400" />
@@ -104,8 +120,8 @@ const CustomerBookings = async () => {
                                         <div className="w-20 h-20 mb-6 rounded-full bg-gray-700 flex items-center justify-center">
                                             <CalendarIcon className="w-10 h-10 text-gray-500" />
                                         </div>
-                                        <h3 className="text-xl font-medium text-gray-300 mb-2">No accepted Bookings Yet</h3>
-                                        <p className="text-gray-500 mb-6 max-w-md">You don't have any accepted bookings yet. When employee accepts your service, their details will appear here.</p>
+                                        <h3 className="text-xl font-medium text-gray-300 mb-2">No accepted Orders Yet</h3>
+                                        <p className="text-gray-500 mb-6 max-w-md">You didn't accepted any customer orders yet. When you accept the order, details will appear here.</p>
                                     </div>
                                 )}
                             </div>

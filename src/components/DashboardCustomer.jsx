@@ -98,20 +98,43 @@ const DashboardCustomer = async () => {
                             {/* Scrollable Booking List */}
                             <div className="p-6 max-h-[426px] overflow-y-auto custom-scrollbar">
                                 {bookings.length > 0 ? (
-                                    <div className="space-y-4">
+                                    <div className="space-y-6">
                                         {bookings.map((booking, index) => (
-                                            <div key={index} className="bg-gray-700 hover:bg-gray-650 border-l-4 border-gray-500 rounded-lg shadow-md transition-all duration-200 overflow-hidden">
-                                                <div className="p-5">
-                                                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
-                                                        <h3 className="text-lg font-medium text-gray-300">{booking.service}</h3>
-                                                        <span className="px-3 py-1 bg-blue-500 text-white text-sm rounded-full">
-                                                            {new Date(booking.date).toLocaleDateString()}
-                                                        </span>
-                                                    </div>
-                                                    <div className="mt-4 flex justify-between items-center">
-                                                        <div className="flex items-center gap-2">
-                                                            <span className="w-2 h-2 bg-yellow-500 rounded-full"></span>
-                                                            <span className="text-sm text-gray-400">Pending</span>
+                                            <div 
+                                                key={index} 
+                                                className="bg-gradient-to-r bg-gray-700 border-blue-500 rounded-xl shadow-lg transition-all duration-300 overflow-hidden"
+                                            >
+                                                <div className="p-6">
+                                                    <div className="flex justify-between items-start">
+                                                        {/* Left side - Service Name and Status */}
+                                                        <div className="flex flex-col gap-8">
+                                                            <h3 className="text-xl font-semibold text-gray-100 flex items-center gap-2">
+                                                                {booking.service}
+                                                            </h3>
+                                                            <span className="flex items-center gap-2 px-3 py-1 bg-yellow-500/10 text-yellow-400 text-sm rounded-full w-fit">
+                                                                <span className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></span>
+                                                                Pending
+                                                            </span>
+                                                        </div>
+
+                                                        {/* Right side - Date and Time with Icons */}
+                                                        <div className="bg-gray-800/50 rounded-lg p-3 flex flex-col gap-3 justify-center">
+                                                            <span className="flex text-sm font-medium text-gray-300 gap-2 justify-end">
+                                                                {new Date(booking.date).toLocaleDateString('en-US', {
+                                                                    day: 'numeric',
+                                                                    month: 'short',
+                                                                    year: 'numeric'
+                                                                })}
+                                                                <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                                                </svg>
+                                                            </span>
+                                                            <span className="flex justify-end gap-2 text-sm font-medium text-gray-300">
+                                                                {booking.time}
+                                                                <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                                </svg>
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -120,11 +143,13 @@ const DashboardCustomer = async () => {
                                     </div>
                                 ) : (
                                     <div className="flex flex-col items-center justify-center py-12 text-center">
-                                        <div className="w-20 h-20 mb-6 rounded-full bg-gray-700 flex items-center justify-center">
-                                            <CalendarIcon className="w-10 h-10 text-gray-500" />
+                                        <div className="w-24 h-24 mb-6 rounded-full bg-gray-700/50 flex items-center justify-center backdrop-blur-sm">
+                                            <CalendarIcon className="w-12 h-12 text-gray-400" />
                                         </div>
-                                        <h3 className="text-xl font-medium text-gray-300 mb-2">No Bookings Yet</h3>
-                                        <p className="text-gray-500 mb-6 max-w-md">You haven't made any bookings yet.</p>
+                                        <h3 className="text-2xl font-semibold text-gray-300 mb-3">No Bookings Yet</h3>
+                                        <p className="text-gray-400 mb-6 max-w-md">
+                                            Your upcoming bookings will appear here once you schedule a service.
+                                        </p>
                                     </div>
                                 )}
                             </div>

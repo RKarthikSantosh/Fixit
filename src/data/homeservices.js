@@ -16,7 +16,7 @@ const serviceCategories = {
       icon:'/barber.png'
     },
     { 
-      name: 'Massage Therapist',
+      name: 'MassageTherapist',
       description: 'Relieves stress and pain through therapeutic massages',
       about:'Relax and unwind with our professional massage therapy services. Whether you need to relieve stress, ease muscle tension, or improve circulation, our experienced massage therapists offer a range of treatments, including deep tissue, Swedish, aromatherapy, and hot stone massages. Each session is designed to rejuvenate your body and mind, providing a soothing and restorative experience. Book your appointment today for a relaxing escape!',
       image:'/massagetherapist.jpeg',

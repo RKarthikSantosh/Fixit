@@ -11,6 +11,7 @@ const BookingPage = () => {
 
     const [user, setUser] = useState(null);
     const [selectedDate, setSelectedDate] = useState("");
+    const [selectedTime, setSelectedTime] = useState(""); // New state for time
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(true);
     const [successMessage, setSuccessMessage] = useState("");
@@ -35,8 +36,24 @@ const BookingPage = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        if (!user || !selectedDate) return;
-
+        if (!user || !selectedDate || !selectedTime) {
+            setError("Please select both date and time.");
+            return;
+        }
+    
+        // ✅ Log what is being sent
+        // console.log("Submitting Booking Data:", {
+        //     username: user.username,
+        //     email: user.email,
+        //     phone: user.phone,
+        //     street: user.street,
+        //     city: user.city,
+        //     state: user.state,
+        //     service: serviceName,
+        //     date: selectedDate,
+        //     time: selectedTime,  // Ensure time is included
+        // });
+    
         try {
             const response = await fetch("/api/booking", {
                 method: "POST",
@@ -50,19 +67,14 @@ const BookingPage = () => {
                     state: user.state,
                     service: serviceName,
                     date: selectedDate,
+                    time: selectedTime,  // ✅ Ensure time is sent
                 }),
             });
-
-            const data = response.headers.get("content-type")?.includes("application/json")
-                ? await response.json()
-                : await response.text();
-
+    
+            const data = await response.json();
+    
             if (!response.ok) {
-                if (data.message === "No worker available for this service." || data === "No worker available for this service.") {
-                    setSuccessMessage("Currently, no worker is available for this service.");
-                } else {
-                    setError(typeof data === "string" ? data : data.message);
-                }
+                setError(data.message);
             } else {
                 setSuccessMessage("Your booking has been confirmed");
                 setTimeout(() => router.push("/"), 3000);
@@ -71,6 +83,7 @@ const BookingPage = () => {
             setError(error.message);
         }
     };
+    
 
     if (loading) return <p className="flex flex-col min-h-screen text-gray-300 bg-gray-800 justify-start items-center p-8"></p>;
 
@@ -99,6 +112,17 @@ const BookingPage = () => {
                                     required
                                     min={new Date().toISOString().split("T")[0]}
                                 />
+                                <label htmlFor="time" className="block font-semibold text-gray-300 mt-4">
+                                    Select Time:
+                                </label>
+                                <input
+                                type="time"
+                                id="time"
+                                value={selectedTime}
+                                onChange={(e) => setSelectedTime(e.target.value)}  // ✅ Ensure time updates state
+                                className="mt-2 px-3 py-2 rounded w-full bg-gray-600 text-gray-300"
+                                required
+                                />
                                 <button type="submit" className="mt-10 text-lg bg-gray-500 text-gray-300 px-4 py-2 rounded w-full">
                                     Confirm Booking
                                 </button>
@@ -109,7 +133,7 @@ const BookingPage = () => {
             ) : (
                 <div className="flex-col bg-gray-700 text-gray-300 p-8 rounded-lg shadow-md mb-12">
                     <h1 className="text-3xl font-bold mb-6 text-center text-gray-300">Sign In</h1>
-                    <SignIn/>
+                    <SignIn />
                 </div>
             )}
         </div>
