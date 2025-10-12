@@ -1,4 +1,4 @@
-FixIt-Service Booking Web Application
+# FixIt-Service Booking Web Application
 
 ## Overview
 
