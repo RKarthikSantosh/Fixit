@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
         {/* Logo and Company Info */}
         <div className="flex flex-col items-center md:items-start">
-          <div className="p-3 bg-blue-500 rounded-full">
+          <div className=" rounded-full">
             <Image src="/engineer.png" alt="FixIt Logo" width={50} height={50} />
           </div>
           <h3 className="text-2xl font-bold text-white mt-4 tracking-wider">FIXIT</h3>

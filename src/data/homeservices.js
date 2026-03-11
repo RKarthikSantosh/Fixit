@@ -16,7 +16,7 @@ const serviceCategories = {
       icon:'/barber.png'
     },
     { 
-      name: 'MassageTherapist',
+      name: 'MassageTherapy',
       description: 'Relieves stress and pain through therapeutic massages',
       about:'Relax and unwind with our professional massage therapy services. Whether you need to relieve stress, ease muscle tension, or improve circulation, our experienced massage therapists offer a range of treatments, including deep tissue, Swedish, aromatherapy, and hot stone massages. Each session is designed to rejuvenate your body and mind, providing a soothing and restorative experience. Book your appointment today for a relaxing escape!',
       image:'/massagetherapist.jpeg',
@@ -88,7 +88,7 @@ const serviceCategories = {
       icon:'/pestcontrolexpert.png'
     },
     { 
-      name: 'ApplianceRepairTechnician',
+      name: 'ApplianceRepair',
       description: 'Repairs and services home appliances efficiently',
       about:'Get your household appliances running smoothly again with our expert appliance repair services. From refrigerators and washing machines to ovens and dishwashers, our skilled technicians provide fast, reliable repairs to extend the life of your appliances. We diagnose and fix issues efficiently, ensuring your appliances work like new. Book your appointment today for hassle-free repairs and peace of mind.',
       image:'/actechnician.jpeg',
@@ -165,14 +165,14 @@ const serviceCategories = {
       name: 'LegalAdvisor',
       description: 'Provides legal consultation and advice',
       about:'Navigate legal challenges with confidence with our expert legal advisors. Whether you need guidance on contracts, property law, business regulations, or personal matters, our experienced lawyers provide clear and reliable advice tailored to your situation. Book your appointment today and get the legal support you need to make informed decisions.',
-      image:'/legaladvisor.jpeg',
+      image:'/legaladvisor.png',
       icon:'/legaladvisor.png'
     },
     { 
       name: 'BusinessConsultant',
       description: 'Offers business advice to help grow and optimize companies',
       about:'Take your business to the next level with professional consulting services. Our experienced business consultants work closely with you to optimize operations, develop growth strategies, and improve performance across all areas of your business. Whether you’re a startup or an established company, we provide valuable insights that lead to measurable success. Book your appointment today and start seeing results!',
-      image:'/businessconsultant.jpeg',
+      image:'/businessconsultant.png',
       icon:'/businessconsultant.png'
     },
     { 
@@ -186,7 +186,7 @@ const serviceCategories = {
       name: 'WebDeveloper',
       description: 'Designs and develops websites for various needs',
       about:'Elevate your online presence with the help of our expert web developers. Whether you need a personal blog, a business website, or an e-commerce platform, we specialize in designing and developing custom websites tailored to your needs. We focus on responsive design, user-friendly interfaces, and performance optimization. Book your appointment today and get a website that stands out!',
-      image:'/webdeveloper.jpeg',
+      image:'/webdeveloper.png',
       icon:'/webdeveloper.png'
     }
   ]
