@@ -1,9 +1,9 @@
 import { User } from "@/model/user-model";
 
 export async function createUser(user) {
-  try{
+  try {
     await User.create(user);
-  } catch(e){
+  } catch (e) {
     throw new Error(e)
   }
 }
@@ -13,9 +13,6 @@ export const getUsersByService = async (serviceName) => {
   return workers; // Ensure it always returns an array (empty if no workers exist)
 };
 
-
-
-export async function getUserByEmail(email) {
+export async function getUsersByEmail(email) {
   return await User.findOne({ email }).select("-password").lean();
 }
-

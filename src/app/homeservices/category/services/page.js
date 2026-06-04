@@ -3,8 +3,9 @@ import { useSearchParams } from "next/navigation";
 import { getServicesByCategory } from "@/data/homeservices";
 import Link from "next/link";
 import Image from "next/image"; // Import Image for icons
+import { Suspense } from "react";
 
-const CategoryServicesPage = () => {
+const CategoryServicesContent = () => {
     const searchParams = useSearchParams();
     const category = searchParams.get("category");
 
@@ -49,6 +50,14 @@ const CategoryServicesPage = () => {
                 </div>
             </div>
         </div>
+    );
+};
+
+const CategoryServicesPage = () => {
+    return (
+        <Suspense fallback={<p className="text-center p-8 text-xl dark:text-gray-200">Loading...</p>}>
+            <CategoryServicesContent />
+        </Suspense>
     );
 };
 
