@@ -8,6 +8,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { User } from "./model/user-model";
 
 import bcrypt from "bcryptjs";
+import { dbConnect } from "@/lib/mongo";
 
 export const { 
     handlers:{GET, POST}, 
@@ -18,12 +19,14 @@ export const {
     session:{
         strategy:"jwt",
     },
+    trustHost: true,
 
     providers: [
         CredentialsProvider({
             async authorize (credentials) {
                 if(credentials === null) return null;
                 try{
+                    await dbConnect();
                     const user = await User.findOne({
                         username:credentials.username,
                     });
