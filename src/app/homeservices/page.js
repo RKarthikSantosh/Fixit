@@ -1,8 +1,11 @@
+import { Suspense } from "react";
 import ServiceList from "@/components/ServiceList"
 
 const ServiceListPage = () => {
   return (
-    <ServiceList /> 
+    <Suspense fallback={<div>Loading...</div>}>
+      <ServiceList /> 
+    </Suspense>
   )
 }
 

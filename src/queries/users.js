@@ -15,7 +15,7 @@ export const getUsersByService = async (serviceName) => {
 
 
 
-export async function getUsersByEmail(email) {
+export async function getUserByEmail(email) {
   return await User.findOne({ email }).select("-password").lean();
 }
 
