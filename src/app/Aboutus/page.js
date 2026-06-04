@@ -11,8 +11,8 @@ export default function AboutDevelopers() {
             role: "Frontend Developer",
             bio: "Passionate about creating user-friendly interfaces.",
             image: "/nikhil.jpg",
-            linkedin: "https://linkedin.com/in/johndoe",
-            github: "https://github.com/johndoe"
+            linkedin: "https://linkedin.com/in/nikhil-suraj-devathi-019a4a358",
+            github: "https://github.com/Nikhil1869"
         },
         {
             name: "Vishal",
@@ -20,7 +20,7 @@ export default function AboutDevelopers() {
             bio: "Loves building scalable and efficient server-side applications.",
             image: "/vishal.jpeg",
             linkedin: "https://linkedin.com/in/vishalkarnati",
-            github: "https://github.com/Vishal-05y"
+            github: "https://github.com/vishalkarnati"
         },
         {
             name: "Santosh",
@@ -56,7 +56,7 @@ export default function AboutDevelopers() {
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white py-16 px-4 sm:px-6 lg:px-8">
             {/* Project Overview */}
-            <motion.div 
+            <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
@@ -92,7 +92,7 @@ export default function AboutDevelopers() {
             </motion.div>
 
             {/* Developers Grid */}
-            <motion.div 
+            <motion.div
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
@@ -106,9 +106,9 @@ export default function AboutDevelopers() {
                         className="bg-gradient-to-br from-gray-800 to-gray-700 p-6 rounded-xl shadow-lg border border-gray-700/50 hover:border-blue-500/30 transition-all duration-300"
                     >
                         <div className="relative w-32 h-32 mx-auto mb-6">
-                            <Image 
-                                src={dev.image} 
-                                alt={dev.name} 
+                            <Image
+                                src={dev.image}
+                                alt={dev.name}
                                 layout="fill"
                                 objectFit="cover"
                                 className="rounded-full border-4 border-gray-600/50 hover:border-blue-500/50 transition-colors duration-300"
@@ -119,9 +119,9 @@ export default function AboutDevelopers() {
                         <h3 className="text-blue-400 text-lg text-center mb-4">{dev.role}</h3>
                         <p className="text-gray-300 text-center mb-6 px-2">{dev.bio}</p>
                         <div className="flex justify-center gap-6">
-                            <motion.a 
-                                href={dev.linkedin} 
-                                target="_blank" 
+                            <motion.a
+                                href={dev.linkedin}
+                                target="_blank"
                                 rel="noopener noreferrer"
                                 whileHover={{ scale: 1.2, rotate: 5 }}
                                 className="text-blue-400 hover:text-blue-300 transition-colors"
@@ -131,9 +131,9 @@ export default function AboutDevelopers() {
                                 </svg>
                                 <span className="sr-only">LinkedIn</span>
                             </motion.a>
-                            <motion.a 
-                                href={dev.github} 
-                                target="_blank" 
+                            <motion.a
+                                href={dev.github}
+                                target="_blank"
                                 rel="noopener noreferrer"
                                 whileHover={{ scale: 1.2, rotate: -5 }}
                                 className="text-gray-300 hover:text-white transition-colors"
