@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: fixit-app
+    env: node
+    region: oregon # You can change this to your preferred region (e.g., frankfurt, ohio, singapore)
+    buildCommand: yarn install && yarn build # Or npm install && npm run build
+    startCommand: yarn start # Or npm run start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false # Set this securely in the Render dashboard
+      - key: AUTH_SECRET
+        sync: false # Set this securely in the Render dashboard
+      - key: NEXTAUTH_URL
+        sync: false # Optional: Set to your Render URL if needed (e.g., https://fixit-app.onrender.com)
