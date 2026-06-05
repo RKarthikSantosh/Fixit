@@ -65,7 +65,7 @@ const Navbar = async () => {
               </li>
               <li>
                 <Link 
-                  href="/Aboutus" 
+                  href="/aboutus" 
                   className="block text-lg md:text-xl font-medium py-2 px-3 rounded-md transition-all hover:bg-gray-700 hover:text-gray-100"
                   onClick={() => setMenuOpen(false)}
                 >
