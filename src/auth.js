@@ -1,5 +1,5 @@
 import NextAuth from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
+
 import GitHubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -8,6 +8,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { User } from "./model/user-model";
 
 import bcrypt from "bcryptjs";
+import { dbConnect } from "@/lib/mongo";
 
 export const { 
     handlers:{GET, POST}, 
@@ -18,12 +19,14 @@ export const {
     session:{
         strategy:"jwt",
     },
+    trustHost: true,
 
     providers: [
         CredentialsProvider({
             async authorize (credentials) {
                 if(credentials === null) return null;
                 try{
+                    await dbConnect();
                     const user = await User.findOne({
                         username:credentials.username,
                     });
@@ -51,18 +54,6 @@ export const {
             }
         }),
 
-        GoogleProvider({
-            clientId:process.env.GOOGLE_CLIENT_ID,
-            clientSecret:process.env.GOOGLE_CLIENT_SECRET,
-
-            authorization:{
-                params:{
-                    prompt:"consent",
-                    access_type:"offline",
-                    response_type:"code",
-                }
-            }
-        }),
 
         GitHubProvider({
             clientId:process.env.GITHUB_CLIENT_ID,

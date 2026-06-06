@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
-import Logout from "@/components/SignOut";
+import SignOut from "@/components/SignOut";
 
 const NavbarClient = ({ loggedInUser, profileLink }) => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -26,9 +26,8 @@ const NavbarClient = ({ loggedInUser, profileLink }) => {
 
         {/* Navigation */}
         <nav
-          className={`absolute md:static top-16 left-0 w-full md:w-auto bg-gray-800 md:bg-transparent transition-all duration-300 ${
-            menuOpen ? "block" : "hidden md:flex"
-          }`}
+          className={`absolute md:static top-16 left-0 w-full md:w-auto bg-gray-800 md:bg-transparent transition-all duration-300 ${menuOpen ? "block" : "hidden md:flex"
+            }`}
         >
           <ul className="flex flex-col md:flex-row gap-3 md:gap-7 items-center p-4 md:p-0">
             {!loggedInUser ? (
@@ -40,14 +39,14 @@ const NavbarClient = ({ loggedInUser, profileLink }) => {
                   <Link href="/signup" className="font-medium text-xl py-2 px-3 rounded-md hover:bg-gray-700">Sign Up</Link>
                 </li>
                 <li>
-                  <Link href="/contact" className="font-medium text-xl py-2 px-3 rounded-md hover:bg-gray-700">About Us</Link>
+                  <Link href="/aboutus" className="font-medium text-xl py-2 px-3 rounded-md hover:bg-gray-700">About Us</Link>
                 </li>
               </>
             ) : (
               <>
                 <li>
-                  <Link 
-                    href="/aboutUs" 
+                  <Link
+                    href="/aboutus"
                     className="block text-lg md:text-xl font-medium py-2 px-3 rounded-md transition-all hover:bg-gray-700 hover:text-gray-100"
                     onClick={() => setMenuOpen(false)}
                   >
@@ -60,7 +59,7 @@ const NavbarClient = ({ loggedInUser, profileLink }) => {
                   </Link>
                 </li>
                 <li>
-                  <Logout />
+                  <SignOut />
                 </li>
               </>
             )}

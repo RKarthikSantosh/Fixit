@@ -20,38 +20,8 @@ export default function Footer() {
           <ul className="grid grid-cols-2 gap-x-8 gap-y-4 text-sm">
             <li className="flex items-center">
               <span className="mr-2">•</span>
-              <Link href="/Aboutus" className="text-gray-400 hover:text-green-400 transition-colors duration-300">
+              <Link href="/aboutus" className="text-gray-400 hover:text-green-400 transition-colors duration-300">
                 About Us
-              </Link>
-            </li>
-            <li className="flex items-center">
-              <span className="mr-2">•</span>
-              <Link href="/contact" className="text-gray-400 hover:text-green-400 transition-colors duration-300">
-                Contact Us
-              </Link>
-            </li>
-            <li className="flex items-center">
-              <span className="mr-2">•</span>
-              <Link href="/faq" className="text-gray-400 hover:text-green-400 transition-colors duration-300">
-                FAQs
-              </Link>
-            </li>
-            <li className="flex items-center">
-              <span className="mr-2">•</span>
-              <Link href="/terms" className="text-gray-400 hover:text-green-400 transition-colors duration-300">
-                Terms & Policies
-              </Link>
-            </li>
-            <li className="flex items-center">
-              <span className="mr-2">•</span>
-              <Link href="/careers" className="text-gray-400 hover:text-green-400 transition-colors duration-300">
-                Careers
-              </Link>
-            </li>
-            <li className="flex items-center">
-              <span className="mr-2">•</span>
-              <Link href="/blog" className="text-gray-400 hover:text-green-400 transition-colors duration-300">
-                Blog
               </Link>
             </li>
           </ul>

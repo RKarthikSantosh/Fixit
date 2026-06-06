@@ -21,21 +21,21 @@ const Navbar = async () => {
     return (
       <header className="sticky top-0 z-50 bg-gray-800 text-gray-300 px-6 md:px-10 py-4 shadow-lg border-b border-gray-700">
         <div className="container mx-auto flex justify-between items-center">
-          
+
           {/* Logo Section */}
           <div className="flex items-center gap-3">
             <Link href="/" className="flex items-center gap-3">
-              <img 
-                src="/engineer.png" 
-                alt="logo" 
-                className="h-10 w-10 md:h-12 md:w-12 object-contain drop-shadow-md" 
+              <img
+                src="/engineer.png"
+                alt="logo"
+                className="h-10 w-10 md:h-12 md:w-12 object-contain drop-shadow-md"
               />
               <h1 className="text-2xl md:text-3xl font-bold tracking-tight">FIXIT</h1>
             </Link>
           </div>
 
           {/* Hamburger Menu Button for Small Screens */}
-          <button 
+          <button
             className="md:hidden p-2 rounded focus:outline-none focus:ring-2 focus:ring-gray-500"
             onClick={toggleMenu}
           >
@@ -46,8 +46,8 @@ const Navbar = async () => {
           <nav className={`absolute md:static top-16 left-0 w-full md:w-auto bg-gray-800 md:bg-transparent md:flex transition-all duration-300 ${menuOpen ? "block" : "hidden"}`}>
             <ul className="flex flex-col md:flex-row gap-3 md:gap-7 items-center text-center p-4 md:p-0">
               <li>
-                <Link 
-                  href="/signin" 
+                <Link
+                  href="/signin"
                   className="block text-lg md:text-xl font-medium py-2 px-3 rounded-md transition-all hover:bg-gray-700 hover:text-gray-100"
                   onClick={() => setMenuOpen(false)}
                 >
@@ -55,8 +55,8 @@ const Navbar = async () => {
                 </Link>
               </li>
               <li>
-                <Link 
-                  href="/signup" 
+                <Link
+                  href="/signup"
                   className="block text-lg md:text-xl font-medium py-2 px-3 rounded-md transition-all hover:bg-gray-700 hover:text-gray-100"
                   onClick={() => setMenuOpen(false)}
                 >
@@ -64,8 +64,8 @@ const Navbar = async () => {
                 </Link>
               </li>
               <li>
-                <Link 
-                  href="/Aboutus" 
+                <Link
+                  href="/aboutus"
                   className="block text-lg md:text-xl font-medium py-2 px-3 rounded-md transition-all hover:bg-gray-700 hover:text-gray-100"
                   onClick={() => setMenuOpen(false)}
                 >
@@ -85,21 +85,21 @@ const Navbar = async () => {
   return (
     <header className="sticky top-0 z-50 custom-bg_text px-6 md:px-10 py-4 shadow-lg border-b border-gray-700">
       <div className="container mx-auto flex justify-between items-center">
-        
+
         {/* Logo Section */}
         <div className="flex items-center gap-3">
           <Link href="/" className="flex items-center gap-3">
-            <img 
-              src="/engineer.png" 
-              alt="logo" 
-              className="h-10 w-10 md:h-12 md:w-12 object-contain drop-shadow-md" 
+            <img
+              src="/engineer.png"
+              alt="logo"
+              className="h-10 w-10 md:h-12 md:w-12 object-contain drop-shadow-md"
             />
             <h1 className="text-2xl md:text-3xl font-bold tracking-tight">FIXIT</h1>
           </Link>
         </div>
 
         {/* Hamburger Menu Button for Small Screens */}
-        <button 
+        <button
           className="md:hidden p-2 rounded focus:outline-none focus:ring-2 focus:ring-gray-500"
           onClick={toggleMenu}
         >
@@ -110,15 +110,15 @@ const Navbar = async () => {
         <div className={`absolute md:static top-16 left-0 w-full md:w-auto bg-gray-800 md:bg-transparent md:flex transition-all duration-300 ${menuOpen ? "block" : "hidden"}`}>
           <ul className="flex flex-col md:flex-row gap-3 md:gap-5 items-center text-center p-4 md:p-0">
             <li>
-              <Link 
-                href={profileLink} 
+              <Link
+                href={profileLink}
                 className="block transition-transform hover:scale-110 focus:scale-110"
                 onClick={() => setMenuOpen(false)}
               >
-                <img 
-                  src="/user.png" 
-                  alt="Profile" 
-                  className="h-10 w-10 rounded-full border-2 border-gray-400 bg-gray-700 object-cover shadow-md hover:border-gray-300 transition-all" 
+                <img
+                  src="/user.png"
+                  alt="Profile"
+                  className="h-10 w-10 rounded-full border-2 border-gray-400 bg-gray-700 object-cover shadow-md hover:border-gray-300 transition-all"
                 />
               </Link>
             </li>
@@ -126,13 +126,13 @@ const Navbar = async () => {
               <Logout />
             </li>
             <li>
-                <Link 
-                  href="/contact" 
-                  className="block text-lg md:text-xl font-medium py-2 px-3 rounded-md transition-all hover:bg-gray-700 hover:text-gray-100"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Contact
-                </Link>
+              <Link
+                href="/contact"
+                className="block text-lg md:text-xl font-medium py-2 px-3 rounded-md transition-all hover:bg-gray-700 hover:text-gray-100"
+                onClick={() => setMenuOpen(false)}
+              >
+                Contact
+              </Link>
             </li>
           </ul>
         </div>

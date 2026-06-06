@@ -1,9 +1,11 @@
 import BookingPage from '@/components/Booking'
-import React from 'react'
+import React, { Suspense } from 'react'
 
 const Bookingpage = () => {
   return (
-    <BookingPage/>
+    <Suspense fallback={<div className="text-center p-10 text-white">Loading booking details...</div>}>
+      <BookingPage/>
+    </Suspense>
   )
 }
 
