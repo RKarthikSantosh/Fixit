@@ -1,5 +1,7 @@
 # FixIt-Service Booking Web Application
+🚀 Live Demo: https://fixit-mtxa.onrender.com
 
+(Note: As this is hosted on a Render instance, it may take 20-30 seconds to spin up on the first visit.)
 ## Overview
 
 FixIt is a full-stack service booking web application where customers can book home or professional services, and workers (employees) can accept and manage these bookings. The system provides separate dashboards for both customers and employees and stores booking information in a MongoDB database.
